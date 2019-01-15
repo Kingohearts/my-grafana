@@ -34,16 +34,19 @@ class MyGrid extends React.Component {
     let visits = 10; // just iniitialization
     for (let i = 1; i < 200; i++) {
      // visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-     visits = (i%2===0 && i%5===0  ? 40*(1+Math.random()*0.1) : 10*(1+Math.random()*0.1));
+     visits = (i%2===0 && i%5===0  ? 30*(1+Math.random()*0.1) : 10*(1+Math.random()*0.1));
       data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
     }
 
     chart.data = data;
+
     chart2.data = data;
+
+
 
     //for chart 3
     data = [];
-    visits = 30; // just iniitialization
+    visits = 20; // just iniitialization
     for (let i = 1; i < 200; i++) {
      data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
     }
@@ -57,18 +60,27 @@ class MyGrid extends React.Component {
     dateAxis2.renderer.grid.template.location = 0;
     dateAxis3.renderer.grid.template.location = 0;
 
+    dateAxis.stroke = am4core.color('#EFEFEF');
+    dateAxis2.stroke = am4core.color('#EFEFEF');
+    dateAxis3.stroke = am4core.color('#EFEFEF');
+
+
+
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     let valueAxis2 = chart2.yAxes.push(new am4charts.ValueAxis());
     let valueAxis3 = chart3.yAxes.push(new am4charts.ValueAxis());
 
     valueAxis.tooltip.disabled = true;
     valueAxis.renderer.minWidth = 35;
+    valueAxis.stroke = am4core.color('#EFEFEF');
 
     valueAxis2.tooltip.disabled = true;
     valueAxis2.renderer.minWidth = 35;
+    valueAxis2.stroke = am4core.color('#EFEFEF');
 
     valueAxis3.tooltip.disabled = true;
     valueAxis3.renderer.minWidth = 35;
+    valueAxis3.stroke = am4core.color('#EFEFEF');
 
 
     let series = chart.series.push(new am4charts.LineSeries());
@@ -78,11 +90,16 @@ class MyGrid extends React.Component {
     series.dataFields.dateX = "date";
     series.dataFields.valueY = "value";
 
+
     series2.dataFields.dateX = "date";
     series2.dataFields.valueY = "value";
+    series2.stroke = am4core.color('#E55332');
+
 
     series3.dataFields.dateX = "date";
     series3.dataFields.valueY = "value";
+    series3.stroke = am4core.color('#8CDB94');
+
 
     series.tooltipText = "{valueY.value}";
     series2.tooltipText = "{valueY.value}";
